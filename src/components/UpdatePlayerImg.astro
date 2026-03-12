@@ -1,0 +1,121 @@
+---
+const { gameId } = Astro.props;
+import { Image } from 'astro:assets'; 
+import PictureImg from '../images/picture-icon.svg';
+---
+
+<div class="update-img popup" id={`update-img-${gameId}`}>
+    <button class="update-img__close close">×</button>
+    <p class="update-img__head-text">Update Player Profile</p>
+    <p>Choose a new image for this player.</p>
+    <form class="update-img__form">
+        <input name="profile-img" id="profile-img-input" type="file" class="update-img__input" required>
+        <div class="update-img__drop-box">
+            <p id="dropbox-text">Click to add your image.</p>
+            <Image src={PictureImg} alt="picture icon" class="update-img__img-icon" id="dropbox-icon"/>
+        </div>
+        <button type="submit" class="update-img__submit">Update Player Profile</button>
+    </form>
+</div>
+
+<style>
+    .update-img {
+        display: none;
+    }
+
+    .update-img__head-text {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--white-100);
+    }
+
+    .update-img__form {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        gap: 12px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        justify-content: center;
+        align-items: center;
+        color: var(--white-400);
+    }
+
+    .update-img__input {
+        display: none;
+    }
+
+    .update-img__drop-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+        border-radius: var(--border-radius);
+        width: 200px;
+        height: 150px;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-align: center;
+        color: var(--white-500);
+        padding: 0px 12px;
+        width: 100%;
+        background-color: var(--pri-850);
+        border: 2px dashed var(--pri-600);
+        margin: 8px 0px;
+        transition: .2s;
+
+        .update-img__img-icon {
+            width: 32px;
+            aspect-ratio: 1;
+            filter: brightness(40%);
+            transition: 0.2s;
+        }
+
+        #display-img {
+            height: 120px;
+            border-radius: var(--border-radius);
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        &:hover {
+            cursor: pointer;
+            border-color: var(--pri-300);
+            color: var(--white-100);
+
+            .update-img__img-icon {
+                filter: brightness(85%);
+            }
+        }
+
+    }
+
+    .update-img__submit {
+        display: flex;
+        font-size: 1.2rem;
+        background-color: var(--white-100);
+        width: 100%;
+        height: auto;
+        align-self: stretch;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        color: var(--pri-850);
+        font-weight: 700;
+        border: none;
+        border-radius: var(--border-radius);
+        transition: 0.25s;
+        padding: 12px 24px;
+        justify-content: center;
+
+        &:hover {
+            color: var(--pri-400);
+            cursor: pointer;
+            box-shadow: 0px 5px 12px hsla(0, 0%, 100%, 0.3);
+        }
+    }
+</style>
+
+<script src="../scripts/updatePlayerImg.js"></script>

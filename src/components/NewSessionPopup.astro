@@ -1,0 +1,89 @@
+---
+const { name = "this player" } = Astro.props;
+---
+
+<div class="session-popup popup" id="session-popup">
+    <button class="session-popup__close close">×</button>
+    <p class="session-popup__head-text">Session Earnings</p>
+    <p>How much money did {name} profit today?</p>
+    <form class="session-popup__form">
+        <div class="session-popup__label-input">
+            <label for="profit">$</label>
+            <input name="profit" id="profit" type="text" inputmode="decimal" placeholder="0.00" class="session-popup__input">
+        </div>
+        <button type="submit" class="session-popup__submit">Update Earnings</button>
+    </form>
+</div>
+
+<style>
+    .session-popup {
+        display: none;
+    }
+
+    .session-popup__head-text {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--white-100);
+    }
+
+    .session-popup__form {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        gap: 12px;
+        font-size: 1.4rem;
+        font-weight: 400;
+        justify-content: center;
+        align-items: center;
+        color: var(--white-400);
+    }
+
+    .session-popup__input {
+        border-radius: var(--border-radius);
+        width: 200px;
+        height: fit-content;
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin: 12px 0px;
+        color: var(--white-100);
+        padding: 12px;
+        background-color: var(--pri-850);
+        border: 2px dashed var(--pri-500);
+    }
+
+    .session-popup__submit {
+        display: flex;
+        font-size: 1.2rem;
+        background-color: var(--white-100);
+        width: 100%;
+        height: auto;
+        align-self: stretch;
+        align-items: center;
+        flex-grow: 1;
+        padding: 0px 24px;
+        color: var(--pri-850);
+        font-weight: 700;
+        border: none;
+        border-radius: var(--border-radius);
+        transition: 0.25s;
+        padding: 12px 24px;
+        justify-content: center;
+
+        &:hover {
+            color: var(--pri-400);
+            cursor: pointer;
+            box-shadow: 0px 5px 12px hsla(0, 0%, 100%, 0.3);
+        }
+    }
+
+    .session-popup__label-input {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        height: fit-content;
+    }
+
+</style>
+
+<script src="../scripts/sessionPopup.js"></script>

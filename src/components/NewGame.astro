@@ -1,0 +1,85 @@
+---
+---
+
+<div class="new-game popup">
+    <button class="new-game__close close">×</button>
+    <p class="new-game__head-text">Create New Game</p>
+    <p>Enter public name for your game:</p>
+    <form class="new-game__form">
+        <input name="name" id="game-name" type="text" placeholder="Awesome Poker Game" class="new-game__input" maxlength="24">
+        <button type="submit" class="new-game__submit">Create New Game</button>
+    </form>
+</div>
+
+<style>
+    .new-game {
+        display: none;
+    }
+
+    .new-game__head-text {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--white-100);
+    }
+
+    .new-game__form {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        gap: 12px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        justify-content: center;
+        align-items: center;
+        color: var(--white-400);
+    }
+
+    .new-game__input {
+        border-radius: var(--border-radius);
+        height: fit-content;
+        font-size: 1.4rem;
+        font-weight: 400;
+        text-align: center;
+        margin: 12px 0px;
+        color: var(--white-100);
+        padding: 12px 0px;
+        width: 100%;
+        background-color: var(--pri-850);
+        border: 2px dashed var(--pri-500);
+    }
+
+    .new-game__submit {
+        display: flex;
+        font-size: 1.2rem;
+        background-color: var(--white-100);
+        width: 100%;
+        height: auto;
+        align-self: stretch;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        color: var(--pri-850);
+        font-weight: 700;
+        border: none;
+        border-radius: var(--border-radius);
+        transition: 0.25s;
+        padding: 12px 24px;
+        justify-content: center;
+
+        &:hover {
+            color: var(--pri-400);
+            cursor: pointer;
+            box-shadow: 0px 5px 12px hsla(0, 0%, 100%, 0.3);
+        }
+    }
+
+    .new-game__label-input {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        height: fit-content;
+    }
+</style>
+
+<script src="../scripts/newGame.js"></script>

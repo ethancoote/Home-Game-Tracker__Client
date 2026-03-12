@@ -1,0 +1,75 @@
+---
+import '../../styles/global.css';
+import Header from '../../components/Header.astro';
+import PlayerList from '../../components/PlayerList.astro';
+import NewSessionPopup from '../../components/NewSessionPopup.astro';
+
+export const prerender = false;
+const gameId = Astro.params.gameId;
+
+// game data
+let gameData = []
+try {
+    const url = `http://localhost:8080/api/game/${gameId}`;
+    const response = await fetch(url);
+    if (!response.ok) {
+        console.error(`Bad Request - gameId: ${gameId} - ${response.status}`);
+    }
+    gameData = await response.json();
+
+} catch (err) {
+    console.error(`Unable to fetch - gameId: ${gameId} - ${err}`);
+    return Astro.redirect('/', 302);
+} 
+
+// players data
+let playersData = [];
+try {
+    const url = `http://localhost:8080/api/game/${gameId}/players`;
+    const response = await fetch(url);
+    if (!response.ok) {
+        console.error(`Bad Request - gameId: ${gameId} - ${response.status}`);
+    }
+    playersData = await response.json();
+} catch (err) {
+    console.error(`Unable to fetch - gameId: ${gameId} - ${err}`);
+} 
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/images/chip.svg" />
+		<link rel="icon" href="/images/chip.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Game View | Home Game Tracker</title>
+        <style>
+            @font-face {
+                font-display: swap;
+                font-family: 'Manrope';
+                font-style: normal;
+                font-weight: 400;
+                src: url('/fonts/manrope-v20-latin-regular.woff2');
+            }
+            @font-face {
+                font-display: swap;
+                font-family: 'Manrope';
+                font-style: normal;
+                font-weight: 700;
+                src: url('/fonts/manrope-v20-latin-700.woff2');
+            }
+        </style>
+	</head>
+	<body>
+        <Header />
+        <main class="wrapper">
+            <div class="container center close m-t-24 m-b-24">
+                <h1>{gameData.title}</h1>
+            </div>
+            <PlayerList playersData={playersData} gameId={gameId}/>
+        </main>
+		<NewSessionPopup />
+	</body>
+</html>

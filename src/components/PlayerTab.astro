@@ -1,0 +1,311 @@
+---
+import '../styles/global.css';
+
+const { name, rank, img, netProfit, playerId, prevSessionProfit } = Astro.props;
+
+let backgroundClass = "";
+if (rank % 2 === 0) {
+    backgroundClass = "dark-back";
+}
+
+const profitString = profitify(netProfit);
+let prevProfitString = profitify(prevSessionProfit);
+
+function profitify(profit: number) {
+    const roundedProfit = Math.round(profit*100) / 100;
+    let profitString = `$${roundedProfit.toFixed(2)}`;
+    if (profit < 0) {
+        profitString = `-$${Math.abs(roundedProfit).toFixed(2)}`;
+    }
+    return profitString
+}
+
+let playerImg = '/images/chip.svg';
+if (img) {
+    playerImg = img;
+}
+
+let colorClass = "green";
+if (prevSessionProfit < 0) {
+    colorClass = "red";
+    prevProfitString += " ▼";
+} else {
+    prevProfitString += " ▲";
+}
+---
+
+<div class:list={["player-tab", backgroundClass]}>
+    <div class="player-tab__rank-name">
+        <p class="player-tab__rank">{rank}</p>
+        <button class="player-tab__profile-btn" id={`profile-${playerId}`}>
+            <img src={playerImg} alt="player profile" class="player-tab__profile" />
+            <img src='/images/edit.svg' alt="edit image icon" class="player-tab__edit" />
+        </button>
+        <p class="player-tab__name">{name}</p>
+        <div class="player-tab__icons">
+            <button class="icon player-tab__delete" id={`delete-player-${playerId}`}>
+                <img src='/images/delete-icon.svg' alt="delete icon"/>        
+            </button>
+            <button class="icon player-tab__edit-name" id={`edit-player-${playerId}`}>
+                <img src='/images/edit.svg' alt="delete icon"/>
+            </button>
+        </div>
+        
+    </div>
+    <div class="player-tab__all-profits">
+        <p class:list={["player-tab__prev-profit", colorClass]}>{prevProfitString}</p>
+        <p class="player-tab__profit" id={playerId}>{profitString}</p>
+        
+    </div>
+    
+</div>
+
+<style>
+    .player-tab {
+        display: flex;
+        width: 100%;
+        gap: 0px;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--pri-800);
+        padding: 12px 16px;
+        border-radius: var(--border-radius);
+
+        .player-tab__profile {
+            width: 100%;
+            border-radius: 56px;
+            height: auto;
+            border: solid 2px var(--pri-500);
+        }
+
+        .player-tab__delete {
+            margin-left: 8px;
+            img {
+                width: 24px;
+                height: 24px; 
+            }
+        }
+
+        .player-tab__icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .player-tab__edit-name {
+            img {
+                width: 20px;
+                height: 20px; 
+            }
+        }
+
+        .icon {
+            display: flex;
+            opacity: 0;
+            align-items: center;
+            aspect-ratio: 1;
+            width: fit-content;
+            height: fit-content;
+            background-color: #0000;
+            border: none;
+            transition: .2s;
+            filter: brightness(60%);
+
+            &:hover {
+                cursor: pointer;
+                filter: brightness(100%);
+            }
+        }
+
+        .player-tab__all-profits {
+            display: flex;
+            gap:8px;
+            flex-shrink: 1;
+            align-items: center;
+        }
+
+        .player-tab__profile-btn {
+            display: flex;
+            flex-shrink: 0;
+            position: relative;
+            width: fit-content;
+            aspect-ratio: 1;
+            height: auto;
+            padding: 0px;
+            margin-right: 20px;
+            background-color: #0000;
+            border: none;
+            transition: 0.25s;
+
+            .player-tab__profile {
+                transition: .25s;
+                object-fit: cover;
+            }
+
+            .player-tab__edit {
+                opacity: 0;
+                position: absolute;
+                aspect-ratio: 1;
+                width: 22px;
+                height: auto;
+                top: 50%;
+                right: 50%;
+                transform: translate(55%, -55%);
+                transition: .3s;
+            }
+
+            &:hover {
+                cursor: pointer;
+
+                .player-tab__profile {
+                    filter: brightness(50%);
+                }
+
+                .player-tab__edit {
+                    opacity: 1;
+                }
+                
+            }
+        }
+
+        .player-tab__profile {
+            width: 64px;
+            height: 64px;
+        }
+
+        p {
+            white-space: wrap;
+            font-size: 1.3rem;
+        }
+
+        &.dark-back {
+            background-color: var(--pri-850);
+        }
+
+        .player-tab__rank {
+            width: 28px;
+            flex-shrink: 0;
+        }
+
+        .player-tab__rank-name {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            
+        }
+
+        .player-tab__profit {
+            transition: 0.25s;
+            margin-left: 12px;
+            font-weight: 700;
+            min-width:96px;
+            text-align: right;
+
+            &:hover {
+                cursor: pointer;
+                color: var(--pri-400);
+            }
+        }
+
+        .player-tab__prev-profit {
+            transition: 0.25s;
+            margin-left: 12px;
+            font-size: 1.1rem;
+            &.red {
+                color: hsl(0, 75%, 44%);
+            }
+            &.green {
+                color: hsl(135, 75%, 44%);
+            }
+        }
+
+        &:hover {
+            .player-tab__delete {
+                opacity: 1;
+            }
+            .player-tab__edit-name {
+                opacity: 1;
+            }
+        }
+    }
+
+    @media only screen and (max-width:900px) {
+        .player-tab {
+            p {
+                font-size: 1.1rem;
+            }
+            .player-tab__name {
+                max-width:130px;
+                white-space: wrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .player-tab__profit {
+                min-width: auto;
+            }
+
+        }
+        
+    }
+
+    @media only screen and (max-width: 600px) {
+        .player-tab {
+            
+            p {
+                font-size: 1rem;
+                
+            }
+
+            .player-tab__prev-profit {
+                font-size: 1rem;
+                width: 100%;
+            }
+
+            .player-tab__profile-button {
+                width: 48px;
+            }   
+
+            .player-tab__profile {
+                width: 48px;
+                height: 48px;
+                aspect-ratio: 1;
+            }
+
+            .player-tab__rank-name {
+                gap: 0px;
+                margin:0px;
+            }
+
+            .player-tab__all-profits {
+                display: flex;
+                flex-direction: column-reverse;
+                gap:2px;
+            }
+
+            .player-tab__icons {
+                flex-direction: column;
+                display: none;
+            }
+
+            .player-tab__edit-name {
+                margin-left: 9px;
+            }
+
+            .player-tab__name {
+                max-width:120px;
+                white-space: wrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+    @media only screen and (max-width:400px) {
+        .player-tab .player-tab__name {
+            max-width:96px;
+        }
+
+        .player-tab {
+            padding-right: 8px;
+        }
+    }
+</style>

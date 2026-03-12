@@ -1,0 +1,69 @@
+---
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import chipImg from '../images/chip.svg';
+import PrimaryBtn from './buttons/PrimaryBtn.astro';
+import SecondaryBtn from './buttons/SecondaryBtn.astro';
+---
+
+<header>
+    <div class="nav">
+        <a class="nav__title" href="/">
+            <Image src={chipImg} alt="home game tracker logo" />
+            <p>Home Game Tracker</p>
+        </a>
+        <div class="nav__buttons">
+            <SecondaryBtn href="/" text="Login"/>
+            <PrimaryBtn href="/" text="Sign Up"/>
+        </div>
+    </div>
+</header>
+
+<style>
+    header {
+        display: flex;
+        justify-content: center;
+        background-color: var(--pri-850);
+        width: 100%;
+    }
+    .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        color: var(--white-200);
+        padding: 12px 24px;
+        max-width: var(--max-width);
+    }
+    .nav__title {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        text-decoration: none;
+        color: var(--white-200);
+        p {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        img {
+            aspect-ratio: 1;
+            width: 56px;
+            height: auto;
+            border-radius: 56px;
+            border: solid 2px var(--pri-500);
+        }
+    }
+    .nav__buttons {
+        display: flex;
+        gap: 12px;
+    }
+
+    @media only screen and (max-width: 900px) {
+        .nav__title {
+            p {
+                display: none;
+            }
+        }
+    }
+
+</style>

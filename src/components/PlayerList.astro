@@ -1,0 +1,50 @@
+---
+import SecondaryBtn from './buttons/SecondaryBtn.astro';
+import PlayerTab from './PlayerTab.astro';
+import AddPlayer from './AddPlayer.astro';
+import UpdatePlayerImg from './UpdatePlayerImg.astro';
+import DeletePlayer from './DeletePlayer.astro';
+import UpdatePlayerName from './UpdatePlayerName.astro';
+
+const { playersData = [], gameId } = Astro.props;
+
+interface Player {
+    name: string;
+    net_profit: number;
+    profile_img: string;
+    player_id: number;
+    game_id: number;
+    previous_session_profit: number;
+}
+---
+
+<div class="container player-list">
+    <div class="container row apart align-end">
+        <SecondaryBtn id="add-player-btn" text="Add Player +"/>
+        <p class="sub-text">Player Net Profit ↓</p>
+    </div>
+    
+    <div class="container gap-6">
+        {playersData.map((player: Player, index: number) => (
+            <PlayerTab 
+                rank={index+1} 
+                name={player.name} 
+                netProfit={player.net_profit} 
+                playerId={player.player_id} 
+                img={player.profile_img} 
+                prevSessionProfit={player.previous_session_profit}
+            />
+        ))}
+    </div>
+    <UpdatePlayerImg />
+    <DeletePlayer />
+    <UpdatePlayerName />
+    <AddPlayer gameId={gameId} />
+</div>
+
+<style>
+    .player-list {
+        gap: 16px;
+        align-items: start;
+    }
+</style>

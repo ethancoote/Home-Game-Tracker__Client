@@ -1,0 +1,49 @@
+---
+import PrimaryBtn from "./buttons/PrimaryBtn.astro";
+
+const { playerId } = Astro.props;
+---
+
+<div class="update-name popup">
+    <button class="update-name__close close">×</button>
+    <p class="head-text">Update Player Name</p>
+    <p>What would you like to name this player?</p>
+    <form class="update-name__form">
+        <input name="name" id="player-name" type="text" placeholder="John Smith" class="update-name__input" maxlength="24">
+        <button type="submit" class="update-name__submit submit">Rename Player</button>
+    </form>
+    <div class="update-name__div"></div>
+</div>
+
+<style>
+    .update-name {
+        display: none;
+        align-items: center;
+    }
+
+    .update-name__div {
+        height: 8px;
+    }
+
+    .update-name__input {
+        border-radius: var(--border-radius);
+        height: fit-content;
+        font-size: 1.4rem;
+        font-weight: 400;
+        text-align: center;
+        margin: 12px 0px;
+        color: var(--white-100);
+        padding: 12px 0px;
+        width: 100%;
+        background-color: var(--pri-850);
+        border: 2px dashed var(--pri-500);
+    }
+
+    .update-name__form {
+        width: 100%;
+    }
+
+
+</style>
+
+<script src="../scripts/UpdatePlayerName.js"></script>

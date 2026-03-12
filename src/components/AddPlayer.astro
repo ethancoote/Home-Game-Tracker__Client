@@ -1,0 +1,83 @@
+---
+const { gameId } = Astro.props;
+---
+
+<div class="add-player popup" id={`add-player-${gameId}`}>
+    <button class="add-player__close">×</button>
+    <p class="add-player__head-text">Add New Player</p>
+    <p>What is the player's name?</p>
+    <form class="add-player__form">
+        <input name="player-name" id="player-name" type="text" placeholder="John Smith" class="add-player__input" maxlength="16">
+        <button type="submit" class="add-player__submit submit">Add New Player</button>
+    </form>
+</div>
+
+<style>
+    .add-player {
+        display: none;
+    }
+
+    .add-player__head-text {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--white-100);
+    }
+
+    .add-player__form {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        gap: 12px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        justify-content: center;
+        align-items: center;
+        color: var(--white-400);
+    }
+
+    .add-player__input {
+        border-radius: var(--border-radius);
+        height: fit-content;
+        font-size: 1.4rem;
+        font-weight: 400;
+        text-align: center;
+        margin: 12px 0px;
+        color: var(--white-100);
+        padding: 12px 0px;
+        width: 100%;
+        background-color: var(--pri-850);
+        border: 2px dashed var(--pri-500);
+    }
+
+    .add-player__label-input {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        height: fit-content;
+    }
+
+    .add-player__close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        background-color: #0000;
+        border: #0000;
+        color: var(--white-400);
+        font-weight: 400;
+        font-size: 2.5rem;
+        transition: 0.25s;
+
+        &:hover {
+            color: hsl(0, 65%, 48%);
+            cursor: pointer;
+        }
+    }
+</style>
+
+<script src="../scripts/addPlayer.js"></script>

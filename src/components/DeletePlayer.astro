@@ -1,0 +1,26 @@
+---
+import DeleteButton from "./buttons/DeleteButton.astro";
+const { playerId } = Astro.props;
+---
+
+<div class="delete-player popup">
+    <button class="delete-player__close close">×</button>
+    <p class="head-text">Delete Player</p>
+    <p>Are you sure you want to delete this player?</p>
+    <p>This action cannot be undone.</p>
+    <div class="delete-player__div"></div>
+    <DeleteButton text="Delete Player" id={`delete-player-btn`}/>
+</div>
+
+<style>
+    .delete-player {
+        display: none;
+        align-items: center;
+    }
+
+    .delete-player__div {
+        height: 8px;
+    }
+</style>
+
+<script src="../scripts/deletePlayer.js"></script>
