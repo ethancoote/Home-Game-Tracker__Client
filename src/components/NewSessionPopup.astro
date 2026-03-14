@@ -9,7 +9,7 @@ const { name = "this player" } = Astro.props;
     <form class="session-popup__form">
         <div class="session-popup__label-input">
             <label for="profit">$</label>
-            <input name="profit" id="profit" type="text" inputmode="decimal" placeholder="0.00" class="session-popup__input">
+            <input name="profit" id="profit" type="text" placeholder="0.00" pattern="-?([0-9]+\.?[0-9]*|\.[0-9]+)" class="session-popup__input">
         </div>
         <button type="submit" class="session-popup__submit">Update Earnings</button>
     </form>

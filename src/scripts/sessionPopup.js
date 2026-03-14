@@ -20,7 +20,9 @@ sessionForm.addEventListener("submit", e => {
     e.preventDefault();
     const formData = new FormData(sessionForm);
     const profit = formData.get('profit');
-    newSession(sessionPlayerId, profit);
+    if (!isNaN(profit)) {
+        newSession(sessionPlayerId, Math.round(profit * 100)/100);
+    }
 });
 
 async function newSession (playerId, profit) {
