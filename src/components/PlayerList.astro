@@ -25,7 +25,9 @@ interface Player {
     </div>
     
     <div class="container gap-6">
-        {playersData.map((player: Player, index: number) => (
+        {playersData
+            .sort((a: Player, b: Player) => b.net_profit - a.net_profit)
+            .map((player: Player, index: number) => (
             <PlayerTab 
                 rank={index+1} 
                 name={player.name} 
