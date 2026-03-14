@@ -22,7 +22,7 @@ form.addEventListener("submit", e => {
 });
 
 async function createNewGame (name) {
-    const url = `http://localhost:8080/api/game/${userId}`;
+    const url = `${import.meta.env.PUBLIC_API_URL}/api/game/${userId}`;
     try {
         const response = await fetch(url, 
             {

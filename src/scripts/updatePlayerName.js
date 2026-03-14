@@ -24,7 +24,7 @@ form.addEventListener("submit", e => {
 });
 
 async function updatePlayerName (name) {
-    const url = `http://localhost:8080/api/player/${playerId}`;
+    const url = `${import.meta.env.PUBLIC_API_URL}/api/player/${playerId}`;
     try {
         const response = await fetch(url, { 
             method: "POST",

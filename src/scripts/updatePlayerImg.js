@@ -38,7 +38,7 @@ inputElem.addEventListener("change", e => {
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
-    const url = `http://localhost:8080/api/profile/${playerId}`;
+    const url = `${import.meta.env.PUBLIC_API_URL}/api/profile/${playerId}`;
     try {
         const response = await fetch(url, {
             method: "POST",

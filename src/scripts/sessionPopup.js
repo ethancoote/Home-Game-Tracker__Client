@@ -24,7 +24,7 @@ sessionForm.addEventListener("submit", e => {
 });
 
 async function newSession (playerId, profit) {
-    const url = `http://localhost:8080/api/sessions/${playerId}`;
+    const url = `${import.meta.env.PUBLIC_API_URL}/api/sessions/${playerId}`;
     try {
         const response = await fetch(url, {
             method: 'POST',

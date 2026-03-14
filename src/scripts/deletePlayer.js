@@ -17,7 +17,7 @@ deleteBtns.forEach(btn => {
 });
 
 confirmDelBtn.addEventListener("click", async () => {
-    const url = `http://localhost:8080/api/player/${playerId}`;
+    const url = `${import.meta.env.PUBLIC_API_URL}/api/player/${playerId}`;
     try {
         const response = await fetch(url, {method: "DELETE"});
         if (!response.ok) {

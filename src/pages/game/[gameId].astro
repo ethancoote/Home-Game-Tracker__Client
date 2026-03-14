@@ -10,7 +10,7 @@ const gameId = Astro.params.gameId;
 // game data
 let gameData = []
 try {
-    const url = `http://localhost:8080/api/game/${gameId}`;
+    const url = `${import.meta.env.PUBLIC_API_URL}/api/game/${gameId}`;
     const response = await fetch(url);
     if (!response.ok) {
         console.error(`Bad Request - gameId: ${gameId} - ${response.status}`);
@@ -25,7 +25,7 @@ try {
 // players data
 let playersData = [];
 try {
-    const url = `http://localhost:8080/api/game/${gameId}/players`;
+    const url = `${import.meta.env.PUBLIC_API_URL}/api/game/${gameId}/players`;
     const response = await fetch(url);
     if (!response.ok) {
         console.error(`Bad Request - gameId: ${gameId} - ${response.status}`);
