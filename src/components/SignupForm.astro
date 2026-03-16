@@ -1,0 +1,59 @@
+---
+---
+<div class="popup signup">
+    <h1 class="head-text">Sign Up</h1>
+    <form class="signup__form">
+        <div class="signup__label-wrap">
+            <label for="user">Username</label>
+            <input class="signup__input" name="user" id="user" placeholder="username" type="text">
+        </div>
+        <div class="signup__label-wrap">
+            <label for="pass">Password</label>
+            <input class="signup__input" name="pass" id="pass" placeholder="password" type="password">
+        </div>
+        <button type="submit" class="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="/login">Click here</a> to login.</p>
+</div>
+
+<style>
+    .signup {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        a {
+            color: var(--pri-400);
+            text-decoration: none;
+            transition: 0.25s;
+            
+            &:hover {
+                color: var(--white-100);
+            }
+        }
+    }
+
+    .signup__form {
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        gap: 24px;
+    }
+
+    .signup__label-wrap {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .signup__input {
+        display: flex;
+        padding: 12px;
+        font-size: 1.2rem;
+        background-color: var(--pri-900);
+        border: 2px dashed var(--pri-500);
+        border-radius: var(--border-radius);
+        color: var(--white-200)
+    }
+</style>
