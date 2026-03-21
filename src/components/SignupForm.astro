@@ -5,11 +5,11 @@
     <form class="signup__form">
         <div class="signup__label-wrap">
             <label for="user">Username</label>
-            <input class="signup__input" name="user" id="user" placeholder="username" type="text">
+            <input class="signup__input" name="user" id="user" placeholder="username" type="text" maxlength="16">
         </div>
         <div class="signup__label-wrap">
             <label for="pass">Password</label>
-            <input class="signup__input" name="pass" id="pass" placeholder="password" type="password">
+            <input class="signup__input" name="pass" id="pass" placeholder="password" type="password" maxlength="24">
         </div>
         <button type="submit" class="submit">Sign Up</button>
     </form>
@@ -57,3 +57,4 @@
         color: var(--white-200)
     }
 </style>
+<script src="../scripts/signup.js"></script>
