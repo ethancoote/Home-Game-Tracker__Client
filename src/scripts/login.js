@@ -1,33 +1,19 @@
-const loginForm = document.querySelector('.login__form');
+import { submitLoginForm } from "./functions";
 
-loginForm.addEventListener("submit", e => {
+const loginForm = document.querySelector('.login__form');
+const errorText = document.querySelector('#login-errors');
+
+loginForm.addEventListener("submit", async e => {
     e.preventDefault();
     const formData = new FormData(loginForm);
     const user = formData.get('user');
     const pass = formData.get('pass');
-    submitLoginForm(user, pass);
-});
-
-async function submitLoginForm (user, pass) {
-    const url = `${import.meta.env.PUBLIC_API_URL}/login`;
-    try {
-        const response = await fetch(url, { 
-            method: "POST",
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({
-                user,
-                pass
-            }),
-            credentials: 'include',
-        });
-        if (!response.ok) {
-            console.error(`Fetch Failed - ${response.status}`);
-        }
-        const userSession = await response.json();
-        console.log(userSession); //temp
-    } catch (err) {
-        console.error(`submitLoginForm failed - ${err}`);
+    const errorCode = await submitLoginForm(user, pass);
+    if (errorCode === -1) {
+        errorText.textContent = "Incorrect username or password.";
+    } else if (errorCode === -2) {
+        errorText.textContent = "Server error.";
+    } else {
+        location.pathname = '/';
     }
-}
+});

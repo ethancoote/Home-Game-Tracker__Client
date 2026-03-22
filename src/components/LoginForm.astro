@@ -12,7 +12,9 @@
             <input class="login__input" name="pass" id="pass" placeholder="password" type="password" maxlength="24">
         </div>
         <button type="submit" class="submit">Login</button>
+        
     </form>
+    <p id="login-errors"></p>
     <p>Need an account? <a href="/signup">Click here</a> to sign up.</p>
 </div>
 
@@ -20,7 +22,7 @@
     .login {
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: 16px;
 
         a {
             color: var(--pri-400);
@@ -55,6 +57,12 @@
         border: 2px dashed var(--pri-500);
         border-radius: var(--border-radius);
         color: var(--white-200)
+    }
+
+    #login-errors {
+        height: fit-content;
+        min-height: 22px;
+        color: hsl(19, 83%, 49%);
     }
 </style>
 

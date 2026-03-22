@@ -3,9 +3,6 @@ const popupElem = document.querySelector('.new-game');
 const newGameBtn = document.querySelector('#new-game-btn');
 const form = document.querySelector('.new-game__form');
 
-//TEMP ID
-let userId = 1;
-
 closeElem.addEventListener("click", () => {
     popupElem.style.display = "none";
 });
@@ -22,7 +19,7 @@ form.addEventListener("submit", e => {
 });
 
 async function createNewGame (name) {
-    const url = `${import.meta.env.PUBLIC_API_URL}/api/game/${userId}`;
+    const url = `${import.meta.env.PUBLIC_API_URL}/api/game/create`;
     try {
         const response = await fetch(url, 
             {
@@ -31,12 +28,13 @@ async function createNewGame (name) {
                     "content-type": 'application/json'
                 },
                 body: JSON.stringify({
-                    userId,
                     name
-                })
+                }),
+                credentials: 'include',
             });
         if (!response.ok) {
             console.error(`createNewGame Fetch Error - ${response.status}`);
+            return null;
         }
         const data = await response.json();
         location.href = `${location.origin}/game/${data.gameId}`;

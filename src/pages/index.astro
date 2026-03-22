@@ -2,10 +2,9 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import PrimaryBtn from '../components/buttons/PrimaryBtn.astro';
+import SecondaryBtn from '../components/buttons/SecondaryBtn.astro';
 import NewGame from '../components/NewGame.astro';
 ---
-
-
 
 <html lang="en">
 	<head>
@@ -18,12 +17,16 @@ import NewGame from '../components/NewGame.astro';
 	</head>
 	<body>
 		<Header />
-		<div class="wrapper">
+		<div class="wrapper hero">
 			<div class="container center gap-16 m-t-24">
-				<h1>Create New Game</h1>
-				<PrimaryBtn text="+ New Game" id="new-game-btn" />
-				<p>// Temp BTN</p>
-				<PrimaryBtn text="Log Out" id="log-out-btn" />
+				<h1 class="visitor-only h1-text">Home Game Tracker</h1>
+				<p class="visitor-only p-text sub-text">Track poker wins and losses with your friends.</p>
+				<p class="user-only h1-text bold">Create New Game</p>
+				<PrimaryBtn text="+ New Game" id="new-game-btn" classes="user-only"/>
+				<div class="visitor-only container center row">
+					<SecondaryBtn text="Login" href="/login" classes="visitor-only"/>
+            		<PrimaryBtn text="Sign Up" href="/signup" classes="visitor-only"/>
+				</div>
 			</div>
 		</div>
 		<NewGame />
@@ -31,3 +34,4 @@ import NewGame from '../components/NewGame.astro';
 </html>
 
 <script src="../scripts/logout.js"></script>
+<script src="../scripts/manageUI.js"></script>

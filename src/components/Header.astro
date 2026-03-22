@@ -13,8 +13,10 @@ import SecondaryBtn from './buttons/SecondaryBtn.astro';
             <p>Home Game Tracker</p>
         </a>
         <div class="nav__buttons">
-            <SecondaryBtn text="Login" href="/login"/>
-            <PrimaryBtn text="Sign Up" href="/signup"/>
+            <p class="nav__user user-only bold" id="nav-username">Username</p>
+            <SecondaryBtn text="Login" href="/login" classes="visitor-only"/>
+            <PrimaryBtn text="Sign Up" href="/signup" classes="visitor-only"/>
+            <SecondaryBtn text="Log Out" id="log-out-btn" classes="user-only"/>
         </div>
     </div>
 </header>
@@ -55,7 +57,15 @@ import SecondaryBtn from './buttons/SecondaryBtn.astro';
     }
     .nav__buttons {
         display: flex;
+        align-items: center;
         gap: 12px;
+        word-break: break-all;
+        margin-left: 16px;
+    }
+
+    .nav__user {
+        font-size: 1.2rem;
+        margin-right: 12px;
     }
 
     @media only screen and (max-width: 900px) {

@@ -1,12 +1,12 @@
 ---
 import '../../styles/global.css';
-const {href, text, id} = Astro.props;
+const {href, text, id, classes} = Astro.props;
 ---
 
 {href ? 
-    <a class="button" href={href}>{text}</a>
+    <a class:list={["button", classes]} href={href}>{text}</a>
 :
-    <button class="button" id={id}>{text}</button>
+    <button class:list={["button", classes]} id={id}>{text}</button>
 }
 
 <style>

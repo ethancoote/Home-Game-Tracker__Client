@@ -13,6 +13,7 @@
         </div>
         <button type="submit" class="submit">Sign Up</button>
     </form>
+    <p id="signup-errors"></p>
     <p>Already have an account? <a href="/login">Click here</a> to login.</p>
 </div>
 
@@ -20,7 +21,7 @@
     .signup {
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: 16px;
 
         a {
             color: var(--pri-400);
@@ -55,6 +56,12 @@
         border: 2px dashed var(--pri-500);
         border-radius: var(--border-radius);
         color: var(--white-200)
+    }
+
+    #signup-errors {
+        height: fit-content;
+        min-height: 22px;
+        color: hsl(19, 83%, 49%);
     }
 </style>
 <script src="../scripts/signup.js"></script>

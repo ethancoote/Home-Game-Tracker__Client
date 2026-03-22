@@ -7,8 +7,7 @@ logoutBtn.addEventListener("click", async () => {
         if (!response.ok) {
             console.log(`Log out failed - ${response.status}`);
         } else {
-            // temp
-            console.log('Logged Out')
+            location.pathname = '/';
         }
     } catch (err) { 
         console.err(err);
