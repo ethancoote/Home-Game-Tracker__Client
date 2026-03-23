@@ -1,0 +1,27 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import SignupForm from '../components/SignupForm.astro';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/images/chip.svg" />
+		<link rel="icon" href="/images/chip.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Home Game Tracker</title>
+	</head>
+	<body>
+		<Header />
+		<div class="wrapper">
+			<div class="container center gap-16 m-t-24">
+				<SignupForm />
+			</div>
+		</div>
+	</body>
+</html>
+
+<script src="../scripts/logout.js"></script>
+<script src="../scripts/manageUI.js"></script>

@@ -1,3 +1,5 @@
+import { getGameId } from "./functions";
+
 const closeElem = document.querySelector('.delete-player__close');
 const popupElem = document.querySelector('.delete-player');
 const deleteBtns = document.querySelectorAll('.player-tab__delete');
@@ -17,9 +19,19 @@ deleteBtns.forEach(btn => {
 });
 
 confirmDelBtn.addEventListener("click", async () => {
+    const gameId = getGameId();
     const url = `${import.meta.env.PUBLIC_API_URL}/api/player/${playerId}`;
     try {
-        const response = await fetch(url, {method: "DELETE"});
+        const response = await fetch(url, { 
+            method: "DELETE", 
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                gameId
+            }),
+            credentials: 'include',
+        });
         if (!response.ok) {
             console.error(`Player delete failed - ${response.status}`)
         }

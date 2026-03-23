@@ -1,6 +1,8 @@
+import { getGameId } from "./functions";
+
 const popupElem = document.querySelector('#session-popup');
 const closeBtn = document.querySelector('.session-popup__close');
-const profitElems = document.querySelectorAll('.player-tab__profit');
+const profitElems = document.querySelectorAll('.player-tab__profit.owner');
 const sessionForm = document.querySelector('.session-popup__form');
 
 let sessionPlayerId = 0; 
@@ -26,6 +28,7 @@ sessionForm.addEventListener("submit", e => {
 });
 
 async function newSession (playerId, profit) {
+    const gameId = await getGameId();
     const url = `${import.meta.env.PUBLIC_API_URL}/api/sessions/${playerId}`;
     try {
         const response = await fetch(url, {
@@ -35,8 +38,10 @@ async function newSession (playerId, profit) {
             },
             body: JSON.stringify({
                 profit,
-                playerId
-            })
+                playerId,
+                gameId,
+            }),
+            credentials: 'include',
         });
         if (!response.ok) {
             console.error(`New session fetch failed - player_id: ${playerId} - ${response.status}`);

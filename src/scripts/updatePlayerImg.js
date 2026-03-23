@@ -1,9 +1,11 @@
+import { getGame, getGameId } from "./functions";
+
 const dropboxElem = document.querySelector('.update-img__drop-box');
 const inputElem = document.querySelector('#profile-img-input');
 const popupElem = document.querySelector('.update-img');
 const closeElem = document.querySelector('.update-img__close');
 const form = document.querySelector('.update-img__form');
-const profileBtns = document.querySelectorAll('.player-tab__profile-btn');
+const profileBtns = document.querySelectorAll('.player-tab__profile-btn.owner');
 
 let playerId = 0;
 closeElem.addEventListener("click", () => {
@@ -37,12 +39,16 @@ inputElem.addEventListener("change", e => {
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const gameId = getGameId();
     const formData = new FormData(form);
+    formData.append('gameId', gameId);
+    console.log(formData.get('gameId'));
     const url = `${import.meta.env.PUBLIC_API_URL}/api/profile/${playerId}`;
     try {
         const response = await fetch(url, {
             method: "POST",
-            body: formData
+            body: formData,
+            credentials: 'include',
         });
     } catch (err) {
         console.err(`fetch failed - ${err}`);

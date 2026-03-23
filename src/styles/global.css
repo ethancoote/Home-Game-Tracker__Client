@@ -58,6 +58,13 @@ h1 {
     max-width: 1400px;
     padding: 24px;
     justify-self: center;
+
+    &.hero {
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 200px;
+        min-height: calc(100vh - 80px);
+    }
 }
 
 .container {
@@ -105,6 +112,20 @@ h1 {
     &.align-end {
         align-items: end;
     }
+
+}
+
+.h1-text {
+    font-size: 3rem;
+}
+
+.p-text {
+    font-size: 1.2rem;
+    line-height: 1.7rem;
+}
+
+.bold {
+    font-weight: 700;
 }
 
 .sub-text {
@@ -183,4 +204,18 @@ h1 {
             box-shadow: 0px 5px 12px hsla(0, 0%, 100%, 0.3);
         }
     }
+}
+
+/* only show when user is logged in */
+.user-only {
+    display: none !important;
+}
+
+.current-user-only {
+    display: none !important;
+}
+
+
+.visitor-only {
+    display: none !important;
 }

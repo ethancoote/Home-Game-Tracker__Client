@@ -30,7 +30,8 @@ async function newSession (gameId, name) {
             body: JSON.stringify({
                 name,
                 gameId
-            })
+            }),
+            credentials: 'include',
         });
         if (!response.ok) {
             console.error(`New session fetch failed - player_id: ${gameId} - ${response.status}`);

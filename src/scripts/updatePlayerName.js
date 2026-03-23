@@ -1,3 +1,5 @@
+import { getGameId } from "./functions";
+
 const closeElem = document.querySelector('.update-name__close');
 const popupElem = document.querySelector('.update-name');
 const editBtns = document.querySelectorAll('.player-tab__edit-name');
@@ -24,6 +26,7 @@ form.addEventListener("submit", e => {
 });
 
 async function updatePlayerName (name) {
+    const gameId = getGameId();
     const url = `${import.meta.env.PUBLIC_API_URL}/api/player/${playerId}`;
     try {
         const response = await fetch(url, { 
@@ -32,8 +35,10 @@ async function updatePlayerName (name) {
                 'content-type': 'application/json',
             },
             body: JSON.stringify({
-                name
-            })
+                name,
+                gameId,
+            }),
+            credentials: 'include',
         });
         if (!response.ok) {
             console.error(`updatePlayerName failed - ${response.status}`);
