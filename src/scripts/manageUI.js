@@ -18,6 +18,7 @@ if (!loggedIn) {
     visitorElems.forEach(elem => {
         elem.style.setProperty('display', 'flex', 'important');
     });
+    addPlayerCont.style.setProperty('justify-content', 'end', 'important');
 } else {
     // any user
     userElems.forEach(elem => {
