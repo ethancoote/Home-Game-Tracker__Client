@@ -28,7 +28,7 @@ sessionForm.addEventListener("submit", e => {
 });
 
 async function newSession (playerId, profit) {
-    const gameId = await getGameId();
+    const gameId = getGameId();
     const url = `${import.meta.env.PUBLIC_API_URL}/api/sessions/${playerId}`;
     try {
         const response = await fetch(url, {
