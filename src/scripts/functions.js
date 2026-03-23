@@ -54,5 +54,29 @@ export async function getUser () {
         return user;
     } catch (err) {
         console.error(err);
+        return "";
     }
+}
+
+export async function getGame () {
+    const gameId = getGameId();
+    const url = `${import.meta.env.PUBLIC_API_URL}/api/game/${gameId}`;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            console.log(`Cannot find game - ${response.status}`);
+            return null;
+        }
+        const game = await response.json();
+        return game;
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+}
+
+export function getGameId () {
+    const gameUrl = location.href;
+    const gameId = gameUrl.split('/').at(-1);
+    return gameId;
 }

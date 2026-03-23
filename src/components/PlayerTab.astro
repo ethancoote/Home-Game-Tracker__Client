@@ -34,10 +34,11 @@ if (prevSessionProfit < 0) {
 }
 ---
 
-<div class:list={["player-tab", backgroundClass]}>
+<!--OWNER-->
+<div class:list={["player-tab current-user-only", backgroundClass]}>
     <div class="player-tab__rank-name">
         <p class="player-tab__rank">{rank}</p>
-        <button class="player-tab__profile-btn" id={`profile-${playerId}`}>
+        <button class="player-tab__profile-btn owner" id={`profile-${playerId}`}>
             <img src={playerImg} alt="player profile" class="player-tab__profile" />
             <img src='/images/edit.svg' alt="edit image icon" class="player-tab__edit" />
         </button>
@@ -54,10 +55,27 @@ if (prevSessionProfit < 0) {
     </div>
     <div class="player-tab__all-profits">
         <p class:list={["player-tab__prev-profit", colorClass]}>{prevProfitString}</p>
-        <p class="player-tab__profit" id={playerId}>{profitString}</p>
+        <p class="player-tab__profit owner" id={playerId}>{profitString}</p>
+    </div>
+</div>
+
+<!--NOT OWNER-->
+<div class:list={["player-tab other-user-only", backgroundClass]}>
+    <div class="player-tab__rank-name">
+        <p class="player-tab__rank">{rank}</p>
+        <div class="player-tab__profile-btn">
+            <img src={playerImg} alt="player profile" class="player-tab__profile" />
+            <img src='/images/edit.svg' alt="edit image icon" class="player-tab__edit" />
+        </div>
+        <p class="player-tab__name">{name}</p>
+        <div class="player-tab__icons">
+        </div>
         
     </div>
-    
+    <div class="player-tab__all-profits">
+        <p class:list={["player-tab__prev-profit", colorClass]}>{prevProfitString}</p>
+        <p class="player-tab__profit" id={playerId}>{profitString}</p>
+    </div>
 </div>
 
 <style>
@@ -123,6 +141,7 @@ if (prevSessionProfit < 0) {
             align-items: center;
         }
 
+
         .player-tab__profile-btn {
             display: flex;
             flex-shrink: 0;
@@ -153,17 +172,18 @@ if (prevSessionProfit < 0) {
                 transition: .3s;
             }
 
-            &:hover {
-                cursor: pointer;
+            &.owner {
+                &:hover {
+                    cursor: pointer;
 
-                .player-tab__profile {
-                    filter: brightness(50%);
-                }
+                    .player-tab__profile {
+                        filter: brightness(50%);
+                    }
 
-                .player-tab__edit {
-                    opacity: 1;
+                    .player-tab__edit {
+                        opacity: 1;
+                    }
                 }
-                
             }
         }
 
@@ -200,10 +220,13 @@ if (prevSessionProfit < 0) {
             min-width:96px;
             text-align: right;
 
-            &:hover {
-                cursor: pointer;
-                color: var(--pri-400);
+            &.owner {
+                &:hover {
+                    cursor: pointer;
+                    color: var(--pri-400);
+                }
             }
+            
         }
 
         .player-tab__prev-profit {

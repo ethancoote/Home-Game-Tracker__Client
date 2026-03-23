@@ -112,6 +112,7 @@ h1 {
     &.align-end {
         align-items: end;
     }
+
 }
 
 .h1-text {
@@ -209,6 +210,11 @@ h1 {
 .user-only {
     display: none !important;
 }
+
+.current-user-only {
+    display: none !important;
+}
+
 
 .visitor-only {
     display: none !important;
