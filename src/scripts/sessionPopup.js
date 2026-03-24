@@ -21,7 +21,9 @@ profitElems.forEach(elem => {
 sessionForm.addEventListener("submit", e => {
     e.preventDefault();
     const formData = new FormData(sessionForm);
-    const profit = formData.get('profit');
+    const buyin = formData.get('buyin');
+    const cashout = formData.get('cashout');
+    const profit = cashout - buyin;
     if (!isNaN(profit)) {
         newSession(sessionPlayerId, Math.round(profit * 100)/100);
     }
