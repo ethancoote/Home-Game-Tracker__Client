@@ -5,11 +5,20 @@ const { name = "this player" } = Astro.props;
 <div class="session-popup popup" id="session-popup">
     <button class="session-popup__close close">×</button>
     <p class="session-popup__head-text">Session Earnings</p>
-    <p>How much money did {name} profit today?</p>
     <form class="session-popup__form">
         <div class="session-popup__label-input">
-            <label for="profit">$</label>
-            <input name="profit" id="profit" type="text" placeholder="0.00" pattern="-?([0-9]+\.?[0-9]*|\.[0-9]+)" class="session-popup__input">
+            <label for="buyin" class="bold">Buy-in</label>
+            <div class="container row">
+                <p>$</p>
+                <input name="buyin" id="buyin" type="text" placeholder="0.00" pattern="-?([0-9]+\.?[0-9]*|\.[0-9]+)" class="session-popup__input">
+            </div>
+        </div>
+        <div class="session-popup__label-input">
+            <label for="cashout" class="bold">Cashout</label>
+            <div class="container row">
+                <p>$</p>
+                <input name="cashout" id="cashout" type="text" placeholder="0.00" pattern="-?([0-9]+\.?[0-9]*|\.[0-9]+)" class="session-popup__input">
+            </div>            
         </div>
         <button type="submit" class="session-popup__submit">Update Earnings</button>
     </form>
@@ -45,11 +54,12 @@ const { name = "this player" } = Astro.props;
         height: fit-content;
         font-size: 1.6rem;
         font-weight: 400;
-        margin: 12px 0px;
+        margin: 0px 0px;
         color: var(--white-100);
         padding: 12px;
         background-color: var(--pri-850);
         border: 2px dashed var(--pri-500);
+        margin-right: 16px;
     }
 
     .session-popup__submit {
@@ -79,7 +89,8 @@ const { name = "this player" } = Astro.props;
 
     .session-popup__label-input {
         display: flex;
-        gap: 12px;
+        gap: 4px;
+        flex-direction: column;
         align-items: center;
         height: fit-content;
     }
