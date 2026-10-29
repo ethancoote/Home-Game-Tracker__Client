@@ -33,4 +33,17 @@ const {href, text, id, classes} = Astro.props;
             color: var(--pri-800);
         }
     }
+
+    .large {
+        min-width: 200px;
+        justify-content: center;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    @media (max-width: 600px) {
+        .large {
+            min-width: 80%;
+        }
+    }
 </style>

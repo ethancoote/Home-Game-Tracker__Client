@@ -4,6 +4,8 @@ import Header from '../components/Header.astro';
 import PrimaryBtn from '../components/buttons/PrimaryBtn.astro';
 import SecondaryBtn from '../components/buttons/SecondaryBtn.astro';
 import NewGame from '../components/NewGame.astro';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import GameCard from '../components/GameCard.astro';
 ---
 
 <html lang="en">
@@ -17,21 +19,60 @@ import NewGame from '../components/NewGame.astro';
 	</head>
 	<body>
 		<Header />
-		<div class="wrapper hero">
-			<div class="container center gap-16 m-t-24">
+		<div class="wrapper hero gap-64 container tablet-col">
+			<div class="container gap-16 m-t-24 tablet-center">
 				<h1 class="visitor-only h1-text">Home Game Tracker</h1>
-				<p class="visitor-only p-text sub-text">Track poker wins and losses with your friends.</p>
-				<p class="user-only h1-text bold">Create New Game</p>
-				<PrimaryBtn text="+ New Game" id="new-game-btn" classes="user-only"/>
-				<div class="visitor-only container center row">
-					<SecondaryBtn text="Login" href="/login" classes="visitor-only"/>
-            		<PrimaryBtn text="Sign Up" href="/signup" classes="visitor-only"/>
+				<p class="visitor-only p-text sub-text">Are you really breaking even in your home games? It's time to find out. Who are the geniuses... Who are the suckers? Track your home game results with your friends.</p>
+				<p class="user-only h1-text bold">Let's Play Poker</p>
+				<p class="user-only p-text">Create a new game, or browse your existing games.</p>
+				<div class="user-only container row gap-12 m-t-16 tablet-center mobile-col">
+					<PrimaryBtn text="+ New Game" id="new-game-btn" classes="large"/>
 				</div>
+				<div class="visitor-only container row gap-12 m-t-16 tablet-center mobile-col">
+					<PrimaryBtn text="Login" href="/login" classes="visitor-only large"/>
+            		<SecondaryBtn text="Sign Up" href="/signup" classes="visitor-only large"/>
+				</div>
+			</div>
+			<div class="container visitor-only">
+				<ResponsiveImage 
+					src="cards.webp" 
+					alt="Friends playing poker around a small table."
+					loading="eager"
+					fetchpriority="high"
+					folder="/home"
+				/>
+			</div>
+		</div>
+		<div class="wrapper">
+			<div class="card-section">
+				<GameCard game=1/>
+				<GameCard />
+				<GameCard />
+				<GameCard />
 			</div>
 		</div>
 		<NewGame />
 	</body>
 </html>
+
+<style>
+	.card-section {
+		width: 100%;
+		height: fit-content;
+		padding: 16px;
+		display: grid;
+		background-color: var(--pri-850);
+		border-radius: var(--border-radius);
+		border: 1px solid var(--pri-700);
+		grid-template-columns: repeat(2, auto);
+		gap: 16px;
+	}
+	@media (max-width: 600px) {
+		.card-section {
+			grid-template-columns: auto;
+		}
+	}
+</style>
 
 <script src="../scripts/logout.js"></script>
 <script src="../scripts/manageUI.js"></script>
