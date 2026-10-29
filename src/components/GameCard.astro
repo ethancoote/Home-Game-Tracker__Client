@@ -1,0 +1,70 @@
+---
+const {game=-1} = Astro.props;
+
+let activeClass = "";
+if (game !== -1) {
+    activeClass = "active";
+}
+---
+
+<a class=`game-card ${activeClass}` href=`/game/${game}`>
+    <p class="h3-text">Game Name</p>
+    <div class="container gap-6">
+        <div class="game-card__number">
+            <p class="p-text">1.</p>
+            <div class="game-card__player p-text">Player 1</div>
+        </div>
+        <div class="game-card__number">
+            <p class="p-text">2.</p>
+            <div class="game-card__player p-text">Player 2</div>
+        </div>
+        <div class="game-card__number">
+            <p class="p-text">3.</p>
+            <div class="game-card__player p-text">Player 3</div>
+        </div>
+        <div class="game-card__number">
+            <p class="p-text">4.</p>
+            <div class="game-card__player p-text">Player 4</div>
+        </div>
+    </div>
+</a>
+
+<style>
+    .game-card {
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        width: 100%;
+        min-height: 300px;
+        border-radius: var(--border-radius);
+        background-color: var(--pri-900);
+        transition: 0.15s ease-in-out;
+        color: var(--white-300);
+        text-decoration: none;
+        padding: 24px;
+        gap: 16px;
+    }
+
+    .game-card__player {
+        width: 100%;
+        background-color: var(--pri-850);
+        border-radius: var(--border-radius);
+        padding: 8px 16px;
+
+    }
+
+    .game-card__number {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        align-items: center;
+    }
+
+    .active {
+        background-color: var(--pri-800);
+        border: 2px solid var(--pri-900);
+        &:hover {
+            border-color: var(--pri-700);
+        }
+    }
+</style>

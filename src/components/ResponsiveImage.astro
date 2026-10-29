@@ -1,0 +1,27 @@
+---
+const {
+    src="chip.svg",
+    alt="website image",
+    classes="img-norm",
+    loading="lazy",
+    id="",
+    fetchpriority="auto",
+    folder=""
+} = Astro.props
+
+const image = "/images"+folder+"/"+src;
+const mobileImage = "/images"+folder+"/"+"mobile/"+src;
+---
+
+<picture>
+    <source srcset={mobileImage} media="(max-width: 600px)">
+    <img class={classes} src={image} alt={alt} loading={loading} id={id} fetchpriority={fetchpriority}>
+</picture>
+
+<style>
+    img {
+        display: block;
+        vertical-align: bottom;
+    }
+</style>
+
